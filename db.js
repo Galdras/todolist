@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/todolist');
 
 var todoSchema = new mongoose.Schema({
 	userID : mongoose.Schema.ObjectId,
@@ -18,9 +17,13 @@ var userSchema = new mongoose.Schema({
 var userModel = mongoose.model('users', userSchema);
 
 var initdb = function() {
+	mongoose.connect('mongodb://localhost:27017/todolist');
 	var db = mongoose.connection;
 
-	db.on('error',console.error.bind(console,'Connection error:')) ;
+	db.on('error',function (err) {
+		console.log('Connection error:')
+		closedb() ;
+	}) ;
 	db.once('open',function() {
 		console.log('Connection to DB : success');
 	}) ;
