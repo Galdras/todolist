@@ -50,7 +50,7 @@ var addTodo = function(_userid, _summary) {
 		console.log('Add new Todo : ' + _summary) ;
 	});
 
-	return newtodo ;
+	return getTodos() ;
 };
 
 var updateTodo = function(_todoid , _summary , _marked) {
@@ -58,16 +58,24 @@ var updateTodo = function(_todoid , _summary , _marked) {
 		if(err) { throw err ;}
 		console.log('Update todo : ' + _summary + ' , marked : ' + _marked) ;
 	});
+
+	return getTodo(_todoid) ;
+};
+
+var deleteTodo = function(_todoid) {
+	todoModel.remove({_id : _todoid}, function(err) {
+		if(err) { throw err ;}
+		console.log('Delete todo : ' + _todoid) ;
+	});
+
+	return getTodos() ;
 };
 
 var getTodo = function(_todoid) {
-	var query = todoModel.find(null) ;
+	var query = todoModel.find() ;
 	query.where('_id', _todoid) ;
-	query.exec(function(err, todo) {
-		if(err) { throw err ; }
-		return todo ;
-	});
-	
+	var promise = query.exec();
+	return promise ;
 };
 
 var getTodos = function() {
@@ -82,5 +90,6 @@ initdb() ;
 
 exports.addTodo = addTodo ;
 exports.updateTodo = updateTodo ;
+exports.deleteTodo = deleteTodo ;
 exports.getTodo = getTodo ;
 exports.getTodos = getTodos ;
