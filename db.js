@@ -71,7 +71,8 @@ var getTodo = function(_todoid) {
 };
 
 var getTodos = function() {
-	var query = todoModel.find(null) ;
+
+	var query = todoModel.find() ;
 	var promise = query.exec();
 	return promise ;
 };
