@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 var todoSchema = new mongoose.Schema({
 	userID : mongoose.Schema.ObjectId,
 	summary : String,
@@ -21,8 +22,7 @@ var initdb = function() {
 	var db = mongoose.connection;
 
 	db.on('error',function (err) {
-		console.log('Connection error:')
-		closedb() ;
+		console.log('Connection error:' + err)
 	}) ;
 	db.once('open',function() {
 		console.log('Connection to DB : success');
@@ -31,6 +31,7 @@ var initdb = function() {
 
 
 var closedb = function() {
+	console.log('Connection closed ...') ;
 	mongoose.connection.close() ;
 };
 
@@ -40,8 +41,6 @@ var userExist = function(_userid) {
 }
 
 var addTodo = function(_userid, _summary) {
-	initdb() ;
-
 	if(userExist(_userid) !== true) { throw "User does not exist ..." ;}
 
 	var newtodo = new todoModel({summary : _summary, userID : _userid, marked : false});
@@ -51,46 +50,34 @@ var addTodo = function(_userid, _summary) {
 		console.log('Add new Todo : ' + _summary) ;
 	});
 
-	closedb() ;
-
 	return newtodo ;
 };
 
 var updateTodo = function(_todoid , _summary , _marked) {
-	initdb() ;
-
 	todoModel.update({_id : _todoid}, {summary : _summary, marked : _marked}, {multi : false}, function(err) {
 		if(err) { throw err ;}
 		console.log('Update todo : ' + _summary + ' , marked : ' + _marked) ;
 	});
-
-	closedb() ;
 };
 
 var getTodo = function(_todoid) {
-	initdb() ;
-
 	var query = todoModel.find(null) ;
 	query.where('_id', _todoid) ;
 	query.exec(function(err, todo) {
 		if(err) { throw err ; }
-		closedb() ;
 		return todo ;
 	});
 	
 };
 
 var getTodos = function() {
-	initdb() ;
-
 	var query = todoModel.find(null) ;
-	query.exec(function(err, todos) {
-		if(err) { throw err ; }
-		closedb() ;
-		return todos ;
-	});
-	
+	var promise = query.exec();
+	return promise ;
 };
+
+
+initdb() ;
 
 exports.addTodo = addTodo ;
 exports.updateTodo = updateTodo ;

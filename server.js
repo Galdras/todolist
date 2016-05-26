@@ -3,8 +3,10 @@ var db = require('./db.js');
 
 var app = express();
 
+
+
 app.get('/todolist', function(req,res) {
-	console.log(db.getTodos()) ;
+	console.log('getTodos : ' + db.getTodos()) ;
 	res.send(db.getTodos());
 });
 
