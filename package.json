@@ -1,0 +1,10 @@
+{
+  "name": "todolist",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.19"
+  }
+}
