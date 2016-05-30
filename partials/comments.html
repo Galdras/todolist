@@ -1,5 +1,6 @@
-	<div>
-		<a href="#/">Revenir aux articles</a>
+<a href="#/">Revenir aux articles</a>
+	<div ng-hide="loading">
+		
 		<h1>{{title}}</h1>
 	
 			<div ng-repeat="comment in comments | filter :{content:query} | orderBy: order">
@@ -8,4 +9,11 @@
 					{{comment.content}}
 				</p>
 			</div>
+			<form ng-submit="addComment()">
+				<input type="text" placeholder="username" ng-model="newComment.username"/><br/>
+				<input type="text" placeholder="city" ng-model="newComment.city"/><br/>
+				<input type="text" placeholder="email" ng-model="newComment.email"/><br/>
+				<textarea ng-model="newComment.content"></textarea>
+				<input type="submit" value="Envoyer"/>
+			</form>
 	</div>

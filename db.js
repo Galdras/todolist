@@ -59,7 +59,7 @@ var updateTodo = function(_todoid , _summary , _marked) {
 		console.log('Update todo : ' + _summary + ' , marked : ' + _marked) ;
 	});
 
-	return getTodo(_todoid) ;
+	return getTodos() ;
 };
 
 var deleteTodo = function(_todoid) {

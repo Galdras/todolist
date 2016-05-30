@@ -3,8 +3,15 @@ var db = require('./db.js');
 
 var app = express();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/todolist', function(req,res) {
 	db.getTodos().then(function(todos){
+		res.header()
 		res.send(todos) ;
 	});
 });
@@ -22,8 +29,9 @@ app.get('/todolist/:id', function(req,res) {
 });
 
 app.post('/todolist/:id', function(req,res) {
-	db.updateTodo(req.params.id,req.body.summary,req.body.marked).then(function(todo){
-		res.send(todo) ;
+	console.log(req.body) ;
+	db.updateTodo(req.params.id,req.body.summary,req.body.marked).then(function(todos){
+		res.send(todos) ;
 	});
 });
 
