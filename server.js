@@ -4,12 +4,13 @@ var bodyparser = require('body-parser');
 
 var app = express();
 
+app.use(bodyparser.json());
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods","GET,PUT,POST,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-  bodyparser.json() ;
   next();
 });
 
@@ -22,7 +23,7 @@ app.get('/todolist', function(req,res) {
 });
 
 app.post('/todolist', function(req,res) {
-	db.addTodo(req.body.userid, req.body.summary).then(function(todos){
+	db.addTodo(req.body.summary).then(function(todos){
 		console.log('POST called') ;
 		res.send(todos) ;
 	});
@@ -36,7 +37,6 @@ app.get('/todolist/:id', function(req,res) {
 });
 
 app.put('/todolist/:id', function(req,res) {
-	console.log(req);
 	db.updateTodo(req.params.id,req.body.summary,req.body.marked).then(function(todos){
 		console.log('PUT called') ;
 		res.send(todos) ;

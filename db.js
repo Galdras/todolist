@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 
 var todoSchema = new mongoose.Schema({
-	userID : mongoose.Schema.ObjectId,
 	summary : String,
 	marked : Boolean
 });
@@ -35,15 +34,10 @@ var closedb = function() {
 	mongoose.connection.close() ;
 };
 
-var userExist = function(_userid) {
-	// todo check exist user
-	return true ;
-}
 
-var addTodo = function(_userid, _summary) {
-	if(userExist(_userid) !== true) { throw "User does not exist ..." ;}
+var addTodo = function(_summary) {
 
-	var newtodo = new todoModel({summary : _summary, userID : _userid, marked : false});
+	var newtodo = new todoModel({summary : _summary, marked : false});
 
 	newtodo.save(function (err) {
 		if(err) { throw err ;}
