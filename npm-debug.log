@@ -1,25 +1,62 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node',
-1 verbose cli   '/usr/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   'mongoose',
-1 verbose cli   '--save' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'angular-resource' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.37
 4 verbose node symlink /usr/bin/node
-5 error Failed to parse json
-5 error Unexpected token }
-6 error File: /home/mandurand/NodeJS/todolist/package.json
-7 error Failed to parse package.json data.
-7 error package.json must be actual JSON, not just JavaScript.
-7 error
-7 error This is not a bug in npm.
-7 error Tell the package author to fix their package.json file. JSON.parse
-8 error System Linux 3.2.0-86-generic
-9 error command "/usr/bin/node" "/usr/bin/npm" "install" "mongoose" "--save"
-10 error cwd /home/mandurand/NodeJS/todolist
-11 error node -v v0.10.37
-12 error npm -v 1.4.28
-13 error file /home/mandurand/NodeJS/todolist/package.json
-14 error code EJSONPARSE
-15 verbose exit [ 1, true ]
+5 warn package.json todolist@0.1.0 No repository field.
+6 verbose readDependencies using package.json deps
+7 verbose cache add [ 'angular-resource', null ]
+8 verbose cache add name=undefined spec="angular-resource" args=["angular-resource",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'angular-resource',
+9 verbose parsed url   path: 'angular-resource',
+9 verbose parsed url   href: 'angular-resource' }
+10 silly lockFile 1a91cce6-angular-resource angular-resource
+11 verbose lock angular-resource /home/mandurand/.npm/1a91cce6-angular-resource.lock
+12 silly lockFile 1a91cce6-angular-resource angular-resource
+13 silly lockFile 1a91cce6-angular-resource angular-resource
+14 verbose addNamed [ 'angular-resource', '' ]
+15 verbose addNamed [ null, '*' ]
+16 silly lockFile 4929dad5-angular-resource angular-resource@
+17 verbose lock angular-resource@ /home/mandurand/.npm/4929dad5-angular-resource.lock
+18 silly addNameRange { name: 'angular-resource', range: '*', hasData: false }
+19 verbose request where is /angular-resource
+20 verbose request registry https://registry.npmjs.org/
+21 verbose request id 7eddf63e6c62d957
+22 verbose url raw /angular-resource
+23 verbose url resolving [ 'https://registry.npmjs.org/', './angular-resource' ]
+24 verbose url resolved https://registry.npmjs.org/angular-resource
+25 verbose request where is https://registry.npmjs.org/angular-resource
+26 info trying registry request attempt 1 at 12:15:18
+27 http GET https://registry.npmjs.org/angular-resource
+28 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=139976490010432:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:../deps/openssl/openssl/ssl/s23_clnt.c:795:
+29 info trying registry request attempt 2 at 12:15:28
+30 http GET https://registry.npmjs.org/angular-resource
+31 info retry will retry, error on last attempt: Error: tunneling socket could not be established, cause=139976490010432:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:../deps/openssl/openssl/ssl/s23_clnt.c:795:
+32 info trying registry request attempt 3 at 12:16:28
+33 http GET https://registry.npmjs.org/angular-resource
+34 silly lockFile 4929dad5-angular-resource angular-resource@
+35 silly lockFile 4929dad5-angular-resource angular-resource@
+36 error network tunneling socket could not be established, cause=139976490010432:error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol:../deps/openssl/openssl/ssl/s23_clnt.c:795:
+36 error network
+36 error network This is most likely not a problem with npm itself
+36 error network and is related to network connectivity.
+36 error network In most cases you are behind a proxy or have bad network settings.
+36 error network
+36 error network If you are behind a proxy, please make sure that the
+36 error network 'proxy' config is set properly.  See: 'npm help config'
+37 error System Linux 3.2.0-86-generic
+38 error command "/usr/bin/node" "/usr/bin/npm" "install" "angular-resource"
+39 error cwd /home/mandurand/NodeJS/todolist
+40 error node -v v0.10.37
+41 error npm -v 1.4.28
+42 error code ECONNRESET
+43 verbose exit [ 1, true ]

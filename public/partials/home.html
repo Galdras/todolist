@@ -1,0 +1,26 @@
+<div ng-hide="loading">
+
+	<div ng-repeat="todo in todos">
+		<div layout="row" layout-align="center">
+			<div>
+				<form ng-submit="update($index)" >
+					<input type="checkbox" ng-model="todo.marked"/>
+					<input type="text"  ng-model="todo.summary"/>
+					<input type="submit" value="Update" />
+				</form>
+			</div>
+			<div>
+				<form ng-submit="delete($index)">
+					<input type="submit" value="Delete" />
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<form ng-submit="add()">
+			<input type="text"  ng-model="newtodo.summary" placeholder="Add new TODO ..."/>
+			<input type="submit" value="Add" />
+	</form>
+</div>
+
